@@ -1,0 +1,368 @@
+/* --------------------------------------------------
+   Base Styles & Variables
+   Laying the foundational principles.
+-------------------------------------------------- */
+
+:root {
+    /* Typography - Clean and modern. Readability is key. */
+    --font-primary: 'Inter', sans-serif;  /* Our chosen typeface. Modern and clear. */
+
+    /* Color Palette - Intentional and adaptable. */
+    --color-white: #f9f9f9;
+    --color-light: #e0e0e0;
+    --color-mid: #757575;
+    --color-dark: #333;
+    --color-navy-dark: #242938;  /* Deep and dramatic for dark mode. */
+    --color-navy-mid: #384059;
+    --color-brown-light: #f5f0e1;  /* Muted light brown for light mode. */
+
+    /* Spacing - Creating visual rhythm. */
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+
+    /* Animation - Subtle confidence. */
+    --animation-duration: 0.3s;
+    --animation-easing: ease-in-out;
+}
+
+/* Reseting default styles for consistent rendering.  A clean slate. */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Dark Mode Theme - A different perspective. */
+body.dark-mode {
+    background-color: var(--color-navy-dark);
+    color: var(--color-white);
+}
+
+body.dark-mode .site-header {
+    background-color: var(--color-navy-mid);
+    color: var(--color-white);
+}
+
+body.dark-mode .nav-links a {
+    color: var(--color-white);
+}
+body.dark-mode .nav-toggle span{
+    background-color: var(--color-white);
+}
+
+body.dark-mode .site-footer {
+    background-color: var(--color-navy-mid);
+    color: var(--color-light);
+}
+
+/* Light Mode Theme - Clarity and openness. */
+body.light-mode {
+    background-color: var(--color-white);
+    color: var(--color-dark);
+}
+
+body.light-mode .site-header {
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    border-bottom: 1px solid var(--color-light);
+}
+
+body.light-mode .nav-links a {
+    color: var(--color-dark);
+}
+
+body.light-mode .nav-toggle span{
+    background-color: var(--color-dark);
+}
+
+body.light-mode .site-footer {
+    background-color: var(--color-light);
+    color: var(--color-mid);
+}
+
+/* --------------------------------------------------
+   Base Styles & Layout
+   The structural integrity of our design.
+-------------------------------------------------- */
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    /* Intentional default for a smooth experience. */
+}
+
+.site-header {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Ensure it stays on top. */
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: var(--spacing-md);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    transition: color var(--animation-duration) var(--animation-easing);
+}
+
+.nav-links a:hover {
+     /* Subtle feedback on interaction. */
+    color: var(--color-mid);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+main {
+    padding: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+     /* Providing breathing room for our content. */
+}
+
+section {
+    padding: var(--spacing-lg) 0;
+     /* Each section is a distinct block of thought. */
+}
+
+section > h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+     /* Guiding the eye. */
+}
+
+.site-footer {
+    text-align: center;
+    padding: var(--spacing-sm);
+    font-size: 0.8rem;
+     /* A quiet conclusion. */
+}
+
+/* --------------------------------------------------
+   Components - Reusable elements of our system.
+-------------------------------------------------- */
+
+.hero {
+    text-align: center;
+    padding: calc(var(--spacing-lg) * 2) 0;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+     /* Flexible layout for projects. */
+}
+
+.project-item {
+    background-color: var(--color-light);
+    padding: var(--spacing-md);
+    border-radius: 5px;
+    text-align: center;
+     /* Placeholders for our work. */
+}
+
+.project-item h3{
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Theme Toggle Button - A deliberate interaction. */
+#theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: var(--spacing-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     /* Minimal styling, focused on function. */
+}
+
+#theme-toggle svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: currentColor;
+}
+
+.moon-icon {
+    display: none;  /* Hidden by default in light mode. */
+}
+
+body.dark-mode .sun-icon {
+    display: none;
+}
+
+body.dark-mode .moon-icon {
+    display: block;
+}
+
+/* Mobile Menu Button */
+.nav-toggle {
+    display: none;  /* Hidden by default on larger screens */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: var(--spacing-md);
+}
+
+.nav-toggle span {
+    height: 2px;
+    width: 100%;
+    background-color: var(--color-dark); /* Default color */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.nav-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translateY(6px);
+}
+
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-6px);
+}
+
+
+/* --------------------------------------------------
+   Animations - Subtle movements that guide the eye.
+-------------------------------------------------- */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--animation-duration) var(--animation-easing),
+                transform var(--animation-duration) var(--animation-easing);
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------
+   Responsiveness - Adapting to different screens.
+-------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        top: 80px; /* Adjusted for header height */
+        left: 0;
+        background-color: inherit;
+        width: 100%;
+        padding: var(--spacing-sm);
+        margin-top: 0;
+        display: none;  /* Initially hidden on smaller screens. */
+        height: calc(100vh - 80px); /* Full viewport height minus header */
+        overflow-y: auto; /* Ensure long menus are scrollable */
+    }
+
+    .nav-links.open {
+        display: block;  /* Show the menu when open. */
+    }
+
+    .nav-links li {
+        margin: var(--spacing-sm) 0;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: left;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    main {
+        padding: var(--spacing-md);
+    }
+
+    section {
+        padding: var(--spacing-md) 0;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;  /* Stack on smaller screens. */
+    }
+    .nav-toggle {
+        display: flex; /* Show on small screens */
+    }
+    .main-nav ul{
+        margin-left: 0;
+    }
+}
+/* Back to Top Button Styles */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#back-to-top:hover {
+    background-color: #555;
+}
